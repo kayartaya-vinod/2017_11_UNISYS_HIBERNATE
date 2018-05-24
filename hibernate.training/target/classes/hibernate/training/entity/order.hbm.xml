@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hibernate.training.entity">
+	<class name="Order" table="orders">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		
+		<!-- many orders belong to one customer -->
+		<many-to-one name="customer" column="customer_id" cascade="save-update" />
+		
+		<property name="orderDate" column="order_date" />
+		<property name="status" />
+		
+		<!-- one or more line items -->
+		<set name="lineItems" cascade="save-update">
+			<!-- column name below, is the foreign key in LINE_ITEMS table -->
+			<key column="order_id" />
+			<!-- the class name below, is to find out the name of the table -->
+			<one-to-many class="LineItem" />
+		</set>
+	</class>
+</hibernate-mapping>

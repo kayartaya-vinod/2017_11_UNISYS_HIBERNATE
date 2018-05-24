@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hibernate.training.entity">
+	<class name="LineItem" table="line_items">
+		<composite-id>
+			<key-many-to-one name="order" column="order_id" lazy="false" />
+			<key-many-to-one name="product" column="product_id" lazy="false" />
+		</composite-id>
+		
+		<property name="quantity" />
+		<property name="unitPrice" column="unit_price" />
+
+	</class>
+</hibernate-mapping>
